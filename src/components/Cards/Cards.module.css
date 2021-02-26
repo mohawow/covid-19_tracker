@@ -1,0 +1,11 @@
+.container {
+  margin: 50px;
+}
+
+.card {
+  margin: 0 2% !important;
+}
+
+.infected {
+  border-bottom: 12px solid orangered;
+}
