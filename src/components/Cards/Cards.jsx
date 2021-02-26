@@ -20,7 +20,12 @@ function Cards({ confirmed, recovered, deaths, lastUpdated }) {
               Infected{" "}
             </Typography>
             <Typography varaint="h5">
-              <CountUp start={0} end="1233334" duration={2} seprator="," />
+              <CountUp
+                start={0}
+                end={confirmed.value}
+                duration={2}
+                seprator=","
+              />
             </Typography>
             <Typography color="textSecondary">02/25/2021</Typography>
             <Typography varaint="body2">
