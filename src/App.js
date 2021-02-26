@@ -1,26 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchData } from "./api";
 import { Cards, Chart, CountryPicker } from "./components";
 import styles from "./App.module.css";
+import useAsyncEffect from "use-async-effect";
 
 function App() {
-  // const [fetchedData, setfetchedData] = useState();
+  const [data, setData] = useState();
 
-  const dataStorage = [];
+  // useEffect(() => {
+  //   (async () => {
+  //     const dataFromApi = await fetchData();
+  //     setData(dataFromApi);
+  //   })();
+  // }, []);
 
-  useEffect(() => {
-    (async function callBackFunction() {
-      const data = await fetchData();
-      return dataStorage.push(data);
-    })();
-  });
+  useAsyncEffect(async () => {
+    const dataFromApi = await fetchData();
+    setData(dataFromApi);
+  }, []);
+
+  if (!data) return "Loading...";
 
   return (
     <div className={styles.container}>
-      <Cards dataStorage={dataStorage} />
-      {/* {dataStorage.map((item, index) => (
-        <div key={index}>{item.confirmed}</div>
-      ))} */}
+      <Cards {...data} />
       <CountryPicker />
       <Chart />
     </div>
