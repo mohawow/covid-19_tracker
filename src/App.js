@@ -7,24 +7,26 @@ import useAsyncEffect from "use-async-effect";
 function App() {
   const [data, setData] = useState();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const dataFromApi = await fetchData();
-  //     setData(dataFromApi);
-  //   })();
-  // }, []);
-
-  useAsyncEffect(async () => {
-    const dataFromApi = await fetchData();
-    setData(dataFromApi);
+  useEffect(() => {
+    (async () => {
+      const dataFromApi = await fetchData();
+      setData(dataFromApi);
+    })();
   }, []);
 
+  // useAsyncEffect(async () => {
+  //   const dataFromApi = await fetchData();
+  //   setData(dataFromApi);
+  // }, []);
+  handleCounteryChange = async(country) =>{
+    
+  }
   if (!data) return "Loading...";
 
   return (
     <div className={styles.container}>
       <Cards {...data} />
-      <CountryPicker />
+      <CountryPicker  handleCounteryChange = {this.handleCounteryChange}/>
       <Chart />
     </div>
   );
