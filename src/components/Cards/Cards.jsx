@@ -5,8 +5,6 @@ import CountUp from "react-countup";
 import cx from "classnames";
 
 function Cards({ confirmed, recovered, deaths, lastUpdate }) {
-
-  
   return (
     <div className={styles.container}>
       {/* Confirmed */}
@@ -15,7 +13,6 @@ function Cards({ confirmed, recovered, deaths, lastUpdate }) {
           item
           component={Card}
           xs={12}
-          md={3}
           className={cx(styles.card, styles.infected)}
         >
           <CardContent>
@@ -30,21 +27,22 @@ function Cards({ confirmed, recovered, deaths, lastUpdate }) {
                 seprator=","
               />
             </Typography>
-            <Typography color="textSecondary">{ new Date(lastUpdate).toDateString()}</Typography>
+            <Typography color="textSecondary">
+              {new Date(lastUpdate).toDateString()}
+            </Typography>
             <Typography varaint="body2">
               Number of infected cases of Covid-19
             </Typography>
           </CardContent>
         </Grid>
       </Grid>
-     
+
       {/* Recovered */}
       <Grid container spacing={3} justify="center">
         <Grid
           item
           component={Card}
           xs={12}
-          md={3}
           className={cx(styles.card, styles.recovered)}
         >
           <CardContent>
@@ -59,21 +57,22 @@ function Cards({ confirmed, recovered, deaths, lastUpdate }) {
                 seprator=","
               />
             </Typography>
-            <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+            <Typography color="textSecondary">
+              {new Date(lastUpdate).toDateString()}
+            </Typography>
             <Typography varaint="body2">
               Number of recovered cases of Covid-19
             </Typography>
           </CardContent>
         </Grid>
       </Grid>
-      
+
       {/* Deaths*/}
       <Grid container spacing={3} justify="center">
         <Grid
           item
           component={Card}
           xs={12}
-          md={3}
           className={cx(styles.card, styles.deaths)}
         >
           <CardContent>
@@ -81,14 +80,11 @@ function Cards({ confirmed, recovered, deaths, lastUpdate }) {
               deaths{" "}
             </Typography>
             <Typography varaint="h5">
-              <CountUp
-                start={0}
-                end={deaths.value}
-                duration={2}
-                seprator=","
-              />
+              <CountUp start={0} end={deaths.value} duration={2} seprator="," />
             </Typography>
-            <Typography color="textSecondary">{ new Date(lastUpdate).toDateString()}</Typography>
+            <Typography color="textSecondary">
+              {new Date(lastUpdate).toDateString()}
+            </Typography>
             <Typography varaint="body2">
               Number of deaths cases of Covid-19
             </Typography>
