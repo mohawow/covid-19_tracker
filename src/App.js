@@ -1,35 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { fetchData } from "./api";
-import { Cards, Chart, CountryPicker } from "./components";
 import styles from "./App.module.css";
-import useAsyncEffect from "use-async-effect";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
-  const [data, setData] = useState();
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 
-  useEffect(() => {
-    (async () => {
-      const dataFromApi = await fetchData();
-      setData(dataFromApi);
-    })();
-  }, []);
-
-  // useAsyncEffect(async () => {
-  //   const dataFromApi = await fetchData();
-  //   setData(dataFromApi);
-  // }, []);
-  handleCounteryChange = async(country) =>{
-    
-  }
-  if (!data) return "Loading...";
-
+export default function App() {
   return (
-    <div className={styles.container}>
-      <Cards {...data} />
-      <CountryPicker  handleCounteryChange = {this.handleCounteryChange}/>
-      <Chart />
-    </div>
+    <Router>
+      <div className={styles.container}>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/:country">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
-export default App;
